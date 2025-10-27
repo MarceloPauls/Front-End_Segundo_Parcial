@@ -39,19 +39,21 @@ Antes de comenzar, asegúrese de tener instalado el siguiente software:
 Abra una terminal y clone el repositorio desde GitHub/GitLab:
 
 ```bash
-# Reemplace https://github.com/MarceloPauls/Front-End_Segundo_Parcial.git con la URL de su proyecto
 git clone https://github.com/MarceloPauls/Front-End_Segundo_Parcial.git
+```
 
 #### Paso 2: Navegar a la Carpeta del Proyecto
 
 Ingrese a la carpeta que se acaba de crear:
 ```bash
 cd alquiler_autos_app
+```
 
 #### Paso 3: Instalar Dependencias
 Flutter utiliza un archivo pubspec.yaml para gestionar los paquetes. Ejecute el siguiente comando para descargar las dependencias necesarias (como provider e intl):
 ```bash
 flutter pub get
+```
 #### Paso 4: Preparar el Emulador (Versión Mobile)
 Para cumplir con el requisito de "version mobile", la aplicación debe ejecutarse en un emulador de Android.
 
@@ -68,4 +70,5 @@ Para cumplir con el requisito de "version mobile", la aplicación debe ejecutars
 Con el emulador ya encendido, regrese a su terminal (o la terminal integrada de VSCode) y ejecute:
 ```bash
 flutter run
+```
 Flutter detectará automáticamente el emulador, compilará la aplicación y la instalará. La app se abrirá en el emulador una vez que el proceso finalice.
