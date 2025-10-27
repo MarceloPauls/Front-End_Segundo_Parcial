@@ -5,27 +5,11 @@ import 'services/vehiculo_service.dart';
 import 'services/cliente_service.dart';
 import 'services/reserva_service.dart';
 import 'services/entrega_service.dart';
+import 'screens/vehiculos_screen.dart';
 
 // --- (Más adelante, moverás estas pantallas a sus propios archivos) ---
 // --- PANTALLAS DE MARCADOR DE POSICIÓN ---
 
-// Pantalla para Módulo 1: Vehículos
-class VehiculosScreen extends StatelessWidget {
-  const VehiculosScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Administrar Vehículos')),
-      body: const Center(child: Text('Aquí irá la lista y filtros de vehículos.')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Lógica para ir a un formulario de 'nuevo vehículo'
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
 
 // Pantalla para Módulo 2: Clientes
 class ClientesScreen extends StatelessWidget {
