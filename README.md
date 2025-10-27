@@ -11,10 +11,7 @@ Este proyecto es el frontend para un sistema de alquiler de autos, desarrollado 
 ## Equipo de Desarrollo
 
 -   **Líder del Proyecto:** Marcelo Andre Pauls Toews
--   **(Integrante 2)**
--   **(Integrante 3)**
--   **(Integrante 4)**
--   **(Integrante 5)**
+
 
 ---
 
