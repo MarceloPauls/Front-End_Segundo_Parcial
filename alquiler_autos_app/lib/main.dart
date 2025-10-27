@@ -7,36 +7,12 @@ import 'services/reserva_service.dart';
 import 'services/entrega_service.dart';
 import 'screens/vehiculos_screen.dart';
 import 'screens/clientes_screen.dart'; 
+import 'screens/reservas_screen.dart';
+import 'screens/nueva_reserva_screen.dart';
 
 // --- (Más adelante, moverás estas pantallas a sus propios archivos) ---
 // --- PANTALLAS DE MARCADOR DE POSICIÓN ---
 
-
-
-
-// Pantalla para Módulo 3 (Formulario): Nueva Reserva
-class NuevaReservaScreen extends StatelessWidget {
-  const NuevaReservaScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Registrar Nueva Reserva')),
-      body: const Center(child: Text('Aquí irá el formulario para crear reservas.')),
-    );
-  }
-}
-
-// Pantalla para Módulo 3 (Ver): Reservas Activas
-class ReservasScreen extends StatelessWidget {
-  const ReservasScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Reservas Activas')),
-      body: const Center(child: Text('Aquí irá la lista de reservas activas.')),
-    );
-  }
-}
 
 // Pantalla para Módulo 4: Registrar Entrega
 class EntregasScreen extends StatelessWidget {

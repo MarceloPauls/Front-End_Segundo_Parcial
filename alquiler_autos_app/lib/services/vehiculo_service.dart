@@ -41,7 +41,14 @@ class VehiculoService extends ChangeNotifier {
      }
   }
 
-  // Métodos para estadísticas 
+  Vehiculo? getVehiculoPorId(String idVehiculo) {
+    try {
+      return _vehiculos.firstWhere((v) => v.idVehiculo == idVehiculo);
+    } catch (e) {
+      return null; // No encontrado
+    }
+  }
+
   int get totalVehiculosDisponibles {
     return _vehiculos.where((v) => v.disponible == 'Sí').length;
   }
