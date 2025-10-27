@@ -9,22 +9,8 @@ import 'screens/vehiculos_screen.dart';
 import 'screens/clientes_screen.dart'; 
 import 'screens/reservas_screen.dart';
 import 'screens/nueva_reserva_screen.dart';
+import 'screens/entregas_screen.dart';
 
-// --- (Más adelante, moverás estas pantallas a sus propios archivos) ---
-// --- PANTALLAS DE MARCADOR DE POSICIÓN ---
-
-
-// Pantalla para Módulo 4: Registrar Entrega
-class EntregasScreen extends StatelessWidget {
-  const EntregasScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Registrar Entrega')),
-      body: const Center(child: Text('Aquí irá el formulario para registrar una entrega.')),
-    );
-  }
-}
 
 // Pantalla para Módulo 5: Estadísticas
 class EstadisticasScreen extends StatelessWidget {

@@ -124,6 +124,8 @@ class _NuevaReservaScreenState extends State<NuevaReservaScreen> {
     final vehiculosDisponibles = vehiculoService.vehiculos
         .where((v) => v.disponible == 'Sí')
         .toList();
+    final bool isSelectedVehiculoValid = _selectedVehiculo != null &&
+              vehiculosDisponibles.any((v) => v.idVehiculo == _selectedVehiculo!.idVehiculo);
 
     return Scaffold(
       appBar: AppBar(
@@ -158,7 +160,7 @@ class _NuevaReservaScreenState extends State<NuevaReservaScreen> {
 
                 // --- Dropdown de Vehículos (SOLO DISPONIBLES) ---
                 DropdownButtonFormField<Vehiculo>(
-                  value: _selectedVehiculo,
+                  value: isSelectedVehiculoValid ? _selectedVehiculo : null,
                   decoration: const InputDecoration(labelText: 'Vehículo'),
                   hint: const Text('Seleccione un vehículo disponible'),
                   items: vehiculosDisponibles.map((Vehiculo vehiculo) {
