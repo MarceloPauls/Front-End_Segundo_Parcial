@@ -1,122 +1,212 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'services/vehiculo_service.dart';
+import 'services/cliente_service.dart';
+import 'services/reserva_service.dart';
+import 'services/entrega_service.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// --- (Más adelante, moverás estas pantallas a sus propios archivos) ---
+// --- PANTALLAS DE MARCADOR DE POSICIÓN ---
 
-  // This widget is the root of your application.
+// Pantalla para Módulo 1: Vehículos
+class VehiculosScreen extends StatelessWidget {
+  const VehiculosScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Administrar Vehículos')),
+      body: const Center(child: Text('Aquí irá la lista y filtros de vehículos.')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Lógica para ir a un formulario de 'nuevo vehículo'
+        },
+        child: const Icon(Icons.add),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+// Pantalla para Módulo 2: Clientes
+class ClientesScreen extends StatelessWidget {
+  const ClientesScreen({super.key});
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Administrar Clientes')),
+      body: const Center(child: Text('Aquí irá la lista y filtros de clientes.')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Lógica para ir a un formulario de 'nuevo cliente'
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+// Pantalla para Módulo 3 (Formulario): Nueva Reserva
+class NuevaReservaScreen extends StatelessWidget {
+  const NuevaReservaScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Registrar Nueva Reserva')),
+      body: const Center(child: Text('Aquí irá el formulario para crear reservas.')),
+    );
   }
+}
+
+// Pantalla para Módulo 3 (Ver): Reservas Activas
+class ReservasScreen extends StatelessWidget {
+  const ReservasScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Reservas Activas')),
+      body: const Center(child: Text('Aquí irá la lista de reservas activas.')),
+    );
+  }
+}
+
+// Pantalla para Módulo 4: Registrar Entrega
+class EntregasScreen extends StatelessWidget {
+  const EntregasScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Registrar Entrega')),
+      body: const Center(child: Text('Aquí irá el formulario para registrar una entrega.')),
+    );
+  }
+}
+
+// Pantalla para Módulo 5: Estadísticas
+class EstadisticasScreen extends StatelessWidget {
+  const EstadisticasScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Estadísticas')),
+      body: const Center(child: Text('Aquí irán las estadísticas.')),
+    );
+  }
+}
+
+// --- CONFIGURACIÓN PRINCIPAL DE LA APP ---
+
+void main() {
+  runApp(const AppState());
+}
+
+// CONFIGURAR EL PROVIDER
+class AppState extends StatelessWidget {
+  const AppState({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => VehiculoService()),
+        ChangeNotifierProvider(create: (_) => ClienteService()),
+        ChangeNotifierProvider(create: (_) => ReservaService()),
+        ChangeNotifierProvider(create: (_) => EntregaService()),
+      ],
+      child: const MyApp(),
+    );
+  }
+}
+
+// DEFINIR EL MATERIALAPP Y LAS RUTAS
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Alquiler de Autos',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false, 
+
+      // PANTALLA INICIAL Y RUTAS DE NAVEGACIÓN
+      initialRoute: '/home', 
+      routes: {
+        '/home': (context) => const HomeScreen(),
+        '/vehiculos': (context) => const VehiculosScreen(),
+        '/clientes': (context) => const ClientesScreen(),
+        '/reservas': (context) => const ReservasScreen(),
+        '/nueva-reserva': (context) => const NuevaReservaScreen(),
+        '/entregas': (context) => const EntregasScreen(),
+        '/estadisticas': (context) => const EstadisticasScreen(),
+      },
+    );
+  }
+}
+
+// PANTALLA PRINCIPAL (MENÚ)
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('Sistema de Alquiler de Autos'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            ListTile(
+                title: Text('Módulos Principales',
+                    style: Theme.of(context).textTheme.titleLarge)),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.directions_car),
+              label: const Text('Administrar Vehículos'),
+              onPressed: () => Navigator.pushNamed(context, '/vehiculos'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.people),
+              label: const Text('Administrar Clientes'),
+              onPressed: () => Navigator.pushNamed(context, '/clientes'),
+            ),
+            const SizedBox(height: 20),
+            ListTile(
+                title: Text('Gestión',
+                    style: Theme.of(context).textTheme.titleLarge)),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.book_online),
+              label: const Text('Registrar Nueva Reserva'),
+              onPressed: () => Navigator.pushNamed(context, '/nueva-reserva'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.key),
+              label: const Text('Registrar Entrega'),
+              onPressed: () => Navigator.pushNamed(context, '/entregas'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.list_alt),
+              label: const Text('Ver Reservas Activas'),
+              onPressed: () => Navigator.pushNamed(context, '/reservas'),
+            ),
+            const SizedBox(height: 20),
+            ListTile(
+                title: Text('Reportes',
+                    style: Theme.of(context).textTheme.titleLarge)),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.bar_chart),
+              label: const Text('Ver Estadísticas'),
+              onPressed: () => Navigator.pushNamed(context, '/estadisticas'),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
