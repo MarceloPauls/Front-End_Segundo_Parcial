@@ -10,21 +10,8 @@ import 'screens/clientes_screen.dart';
 import 'screens/reservas_screen.dart';
 import 'screens/nueva_reserva_screen.dart';
 import 'screens/entregas_screen.dart';
+import 'screens/estadisticas_screen.dart';
 
-
-// Pantalla para Módulo 5: Estadísticas
-class EstadisticasScreen extends StatelessWidget {
-  const EstadisticasScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Estadísticas')),
-      body: const Center(child: Text('Aquí irán las estadísticas.')),
-    );
-  }
-}
-
-// --- CONFIGURACIÓN PRINCIPAL DE LA APP ---
 
 void main() {
   runApp(const AppState());
