@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/vehiculo.dart';
 import '../services/vehiculo_service.dart';
+import '../widgets/boton_principal.dart';
 
 class VehiculoFormScreen extends StatefulWidget {
   // El formulario recibe un vehículo.
@@ -157,12 +158,9 @@ class _VehiculoFormScreenState extends State<VehiculoFormScreen> {
                 const SizedBox(height: 32),
 
                 // --- BOTÓN GUARDAR ---
-                ElevatedButton(
+                BotonPrincipal(
+                  texto: 'Guardar',
                   onPressed: _guardarFormulario,
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50), // Botón grande
-                  ),
-                  child: const Text('Guardar'),
                 ),
               ],
             ),

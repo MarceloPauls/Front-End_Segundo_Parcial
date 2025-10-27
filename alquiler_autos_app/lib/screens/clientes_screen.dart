@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/cliente.dart';
 import '../services/cliente_service.dart';
+import '../widgets/dialogo_confirmacion.dart';
 import 'cliente_form_screen.dart'; 
 
 // Usamos StatefulWidget para el filtro
@@ -136,33 +137,17 @@ class _ClientesScreenState extends State<ClientesScreen> {
   }
 
   // --- Diálogo de confirmación para eliminar ---
-  void _mostrarDialogoConfirmacion(BuildContext context, String idCliente) {
+  void _mostrarDialogoConfirmacion(BuildContext context, String idCliente) async {
     final clienteService = context.read<ClienteService>();
 
-    showDialog(
-      context: context,
-      builder: (BuildContext ctx) {
-        return AlertDialog(
-          title: const Text('Confirmar Eliminación'),
-          content: const Text('¿Estás seguro de que deseas eliminar este cliente?'),
-          actions: [
-            TextButton(
-              child: const Text('Cancelar'),
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(foregroundColor: Colors.red),
-              child: const Text('Eliminar'),
-              onPressed: () {
-                clienteService.eliminarCliente(idCliente);
-                Navigator.of(ctx).pop();
-              },
-            ),
-          ],
-        );
-      },
+    final bool? confirmado = await mostrarDialogoDeConfirmacion(
+      context,
+      titulo: 'Confirmar Eliminación',
+      contenido: '¿Estás seguro de que deseas eliminar este cliente?',
     );
+
+    if (confirmado == true) { 
+      clienteService.eliminarCliente(idCliente); 
+    }
   }
 }

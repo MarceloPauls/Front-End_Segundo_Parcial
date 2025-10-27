@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../models/cliente.dart';
 import '../services/cliente_service.dart';
+import '../widgets/boton_principal.dart';
 
 class ClienteFormScreen extends StatefulWidget {
   // Si 'cliente' es null, creamos. Si no, editamos.
@@ -128,12 +129,9 @@ class _ClienteFormScreenState extends State<ClienteFormScreen> {
                 const SizedBox(height: 32),
 
                 // --- BOTÓN GUARDAR ---
-                ElevatedButton(
+                BotonPrincipal(
+                  texto: 'Guardar',
                   onPressed: _guardarFormulario,
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                  ),
-                  child: const Text('Guardar'),
                 ),
               ],
             ),

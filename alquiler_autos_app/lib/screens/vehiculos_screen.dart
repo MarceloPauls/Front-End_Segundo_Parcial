@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../models/vehiculo.dart';
 import '../services/vehiculo_service.dart';
+import '../widgets/dialogo_confirmacion.dart';
 import 'vehiculo_form_screen.dart'; 
+
 
 // Usamos un StatefulWidget para manejar el estado del campo de filtro
 class VehiculosScreen extends StatefulWidget {
@@ -162,35 +164,18 @@ class _VehiculosScreenState extends State<VehiculosScreen> {
   }
 
   // --- Diálogo de confirmación para eliminar ---
-  void _mostrarDialogoConfirmacion(BuildContext context, String idVehiculo) {
-    // Usamos context.read aquí porque estamos dentro de un callback,
-    // no necesitamos "escuchar" cambios, solo ejecutar una acción.
+  void _mostrarDialogoConfirmacion(BuildContext context, String idVehiculo) async {
     final vehiculoService = context.read<VehiculoService>();
 
-    showDialog(
-      context: context,
-      builder: (BuildContext ctx) {
-        return AlertDialog(
-          title: const Text('Confirmar Eliminación'),
-          content: const Text('¿Estás seguro de que deseas eliminar este vehículo?'),
-          actions: [
-            TextButton(
-              child: const Text('Cancelar'),
-              onPressed: () {
-                Navigator.of(ctx).pop(); // Cierra el diálogo
-              },
-            ),
-            TextButton(
-              style: TextButton.styleFrom(foregroundColor: Colors.red),
-              child: const Text('Eliminar'),
-              onPressed: () {
-                vehiculoService.eliminarVehiculo(idVehiculo);
-                Navigator.of(ctx).pop(); // Cierra el diálogo
-              },
-            ),
-          ],
-        );
-      },
+    final bool? confirmado = await mostrarDialogoDeConfirmacion(
+      context,
+      titulo: 'Confirmar Eliminación',
+      contenido: '¿Estás seguro de que deseas eliminar este vehículo?',
     );
+
+    // Solo elimina si el usuario presionó 'Eliminar' (que devuelve true)
+    if (confirmado == true) { 
+      vehiculoService.eliminarVehiculo(idVehiculo);
+    }
   }
 }
