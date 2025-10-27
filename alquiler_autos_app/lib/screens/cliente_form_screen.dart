@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 import '../models/cliente.dart';
 import '../services/cliente_service.dart';
@@ -109,6 +110,14 @@ class _ClienteFormScreenState extends State<ClienteFormScreen> {
                 TextFormField(
                   controller: _documentoController,
                   decoration: const InputDecoration(labelText: 'Nº de Documento o Identificación'),
+                  
+                  // --- AÑADE ESTAS DOS LÍNEAS ---
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  // ---------------------------------
+
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, ingrese un documento';

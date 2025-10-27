@@ -72,6 +72,20 @@ class _VehiculosScreenState extends State<VehiculosScreen> {
             ),
           ),
 
+          // --- INICIO DE LA CABECERA (AÑADIR ESTO) ---
+          ListTile(
+            dense: true, // Hace la cabecera un poco más delgada
+            title: Text(
+              'Vehículo',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey.shade700),
+            ),
+            trailing: Text(
+              'Disponible', // Tu etiqueta
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey.shade700),
+            ),
+          ),
+          const Divider(height: 1, thickness: 1), // Una línea divisoria
+
           // --- LISTA DE VEHÍCULOS ---
           // Usamos Expanded para que la lista ocupe el espacio restante
           Expanded(
