@@ -6,28 +6,13 @@ import 'services/cliente_service.dart';
 import 'services/reserva_service.dart';
 import 'services/entrega_service.dart';
 import 'screens/vehiculos_screen.dart';
+import 'screens/clientes_screen.dart'; 
 
 // --- (Más adelante, moverás estas pantallas a sus propios archivos) ---
 // --- PANTALLAS DE MARCADOR DE POSICIÓN ---
 
 
-// Pantalla para Módulo 2: Clientes
-class ClientesScreen extends StatelessWidget {
-  const ClientesScreen({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Administrar Clientes')),
-      body: const Center(child: Text('Aquí irá la lista y filtros de clientes.')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Lógica para ir a un formulario de 'nuevo cliente'
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
+
 
 // Pantalla para Módulo 3 (Formulario): Nueva Reserva
 class NuevaReservaScreen extends StatelessWidget {
